@@ -86,6 +86,9 @@ CREATE DATABASE itheima CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ### 5. 启动应用
 
 ```bash
+# client
+npm install --ignore-scripts --legacy-peer-deps
+npm run dev
 ```
 
 或者在IDE中直接运行 `main.py` 类的 `main` 方法。
