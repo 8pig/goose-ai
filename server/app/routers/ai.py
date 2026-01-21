@@ -1,11 +1,14 @@
+from urllib.request import Request
+
 from fastapi import APIRouter
+from fastapi.params import Query, Form
 from langgraph.checkpoint.memory import MemorySaver
 from openai import BaseModel
 from starlette.responses import StreamingResponse
 
 from typing import List, Dict, Optional
 from app.agents.agent1 import  run_agent_for_web_stream
-from app.agents.service_chat import run_agent_for_service_stream
+from app.agents.service_agent import run_agent_for_service_stream
 from app.llm.qw_llm import llm_qwen
 
 
@@ -49,3 +52,15 @@ async def stream_chat(request: OpenAIChatRequest):
     return StreamingResponse(generate(), media_type="text/event-stream")
 
 
+@router.get("/prompt")
+async def process_prompt(
+        chatId: str = Query(..., description="通过URL参数传递的chatId"),
+        prompt: str = Query(..., description="通过FormData传递的prompt")
+):
+    async def generate():
+        # 调用 service_agent 获取流式响应
+        async for chunk in run_agent_for_service_stream(prompt, chatId):
+            # 处理响应流 - 修正为SSE格式
+            yield chunk
+
+    return StreamingResponse(generate(), media_type="text/event-stream")
