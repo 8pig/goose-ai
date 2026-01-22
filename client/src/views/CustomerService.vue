@@ -28,8 +28,8 @@
           <div class="service-info">
             <ComputerDesktopIcon class="avatar" />
             <div class="info">
-              <h3>小黑</h3>
-              <p>黑马程序员智能客服</p>
+              <h3>小法</h3>
+              <p>xxx法院智能客服</p>
             </div>
           </div>
         </div>

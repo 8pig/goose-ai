@@ -24,6 +24,7 @@ dependencies = [
     "python-dotenv>=1.2.1",
     "python-multipart>=0.0.21",
     "selenium>=4.34.2",
+    "uvicorn>=0.40.0",
 ]
 
 [[tool.uv.index]]
