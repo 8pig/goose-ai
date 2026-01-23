@@ -1,7 +1,7 @@
 import os
 
 from fastapi import FastAPI
-from app.routers import users, ai
+from app.routers import users, chat
 from dotenv import load_dotenv
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
@@ -21,7 +21,7 @@ app.add_middleware(
     allow_headers=["*"], # 允许所有请求头
 )
 app.include_router(users.router)
-app.include_router(ai.router)
+app.include_router(chat.router)
 
 
 
