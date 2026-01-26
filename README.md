@@ -21,7 +21,7 @@
 ### 后端技术
 - **核心框架**: Python/FastApi
 - **AI框架**: Langchain
-- **持久层**: ~
+- **向量库**: redis-stack
 - **数据库**: MySQL
 - **开发语言**: python3/Vue
 - **构建工具**: ~
@@ -64,15 +64,15 @@ cd goose-ai
 
 ### 2. 数据库配置
 
-创建名为 `goose-ai` 的MySQL数据库：
+拉取redis-stack向量数据库
 
-```sql
-CREATE DATABASE itheima CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```dockerfile
+docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 redis/redis-stack:latest
 ```
 
 ### 3. 修改配置
 
-编辑 `src/main/resources/application.yaml` 文件，根据你的环境修改数据库连接信息：
+编辑 `.env` 文件，根据你的环境修改数据库连接信息：
 
 ```yaml
 
@@ -85,7 +85,11 @@ CREATE DATABASE itheima CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 ### 5. 启动应用
 
-```bash
+```powershell
+# server
+.venv\Scripts\Activate.ps1
+Get-Command python
+
 # client
 npm install --ignore-scripts --legacy-peer-deps
 npm run dev
