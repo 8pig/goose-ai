@@ -14,7 +14,7 @@ from app.llm.qw_llm import llm_qwen
 import os
 
 from app.utils.get_json_file import get_chat_filenames_without_extension
-
+from app.agents.game_chat import agent_with_game_history  # 导入 agent
 
 class ChatRequest(BaseModel):
     message: str
@@ -34,104 +34,25 @@ class OpenAIChatRequest(BaseModel):
     stream: Optional[bool] = True  # 是
     session_id: Optional[str] = "default_session"
 
-@router.post("/chat/stream")
-async def stream_chat(request: OpenAIChatRequest):
-    user_message = request.messages[-1]["content"]
-    session_id = request.session_id if hasattr(request, 'session_id') else "default_session"
-    async def generate():
-        async for chunk in run_agent_for_web_stream(user_message, session_id):
-            yield f"data: {chunk}\n\n"
-    return StreamingResponse(generate(), media_type="text/event-stream")
 
-
-
-@router.post("/chat/stream/service")
-async def stream_chat(request: OpenAIChatRequest):
-    user_message = request.messages[-1]["content"]
-    session_id = request.session_id if hasattr(request, 'session_id') else "default_session"
-    async def generate():
-        async for chunk in run_agent_for_service_stream(user_message, session_id):
-            yield f"data: {chunk}\n\n"
-    return StreamingResponse(generate(), media_type="text/event-stream")
-
-
-@router.post("/prompt")
-async def process_prompt(
-        chatId: str = Query(..., description="通过URL参数传递的chatId"),
-        prompt: str = Form(..., description="通过FormData传递的prompt")
-):
-    async def generate():
-        # 调用 service_agent 获取流式响应
-        async for chunk in run_agent_for_service_stream(prompt, chatId):
-            # 处理响应流 - 修正为SSE格式
-            yield chunk
-
-    return StreamingResponse(generate(), media_type="text/event-stream")
-
-
-
-@router.get("/service")
+@router.get("/game")
 async def process_prompt(
         chatId: str = Query(..., description="通过URL参数传递的chatId"),
         prompt: str = Query(..., description="通过Query传递的prompt")
 ):
     async def generate():
-        async for chunk in run_agent_for_service_stream(prompt, chatId):
-            if hasattr(chunk, 'content'):
-                yield chunk.content
-            else:
-                yield str(chunk)
+        full_response = ""
+        async for chunk in agent_with_game_history.astream(
+            {
+                "question": prompt,
+                "+-原谅值增减": "0",
+                "女友心情": "正常",
+                "女友说的话": "",
+                "当前原谅值": "100"
+            },
+            config={"configurable": {"session_id": chatId}}
+        ):
+            full_response += chunk
+            yield chunk  # 直接返回原始块内容，不加 data: 前缀
 
     return StreamingResponse(generate(), media_type="text/plain")
-
-
-@router.get("/history/chat/{chatId}")
-async def get_chat_history_details(chatId: str):
-    # 获取项目根目录路径
-    current_file_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    project_root = os.path.dirname(current_file_dir)
-    chat_file_path = os.path.join(project_root, "chat_history", "chat", f"{chatId}.json")
-
-    # 检查文件是否存在
-    if not os.path.exists(chat_file_path):
-        from fastapi import HTTPException
-        raise HTTPException(status_code=404, detail="Chat history not found")
-
-    # 读取并解析JSON文件
-    import json
-    from datetime import datetime
-
-    with open(chat_file_path, 'r', encoding='utf-8') as f:
-        chat_data = json.load(f)
-
-    # 转换格式
-    converted_data = []
-    for item in chat_data:
-        message_type = item['type']
-        content = item['data']['content']
-
-        # 转换角色
-        role = 'user' if message_type == 'human' else 'assistant'
-
-        # 创建新格式的消息对象
-        converted_message = {
-            'role': role,
-            'content': content,
-            'timestamp': datetime.now().isoformat()
-        }
-
-        converted_data.append(converted_message)
-
-    return converted_data
-
-
-@router.get("/history/service")
-async def get_chat_history():
-    filenames = get_chat_filenames_without_extension('service')
-    return filenames
-
-
-
-
-
-
