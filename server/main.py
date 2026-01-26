@@ -1,10 +1,11 @@
 import os
 
 from fastapi import FastAPI
-from app.routers import users, chat, game, service
+from app.routers import users, chat, game, service, chat_pdf
 from dotenv import load_dotenv
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 
 load_dotenv()
@@ -24,6 +25,9 @@ app.include_router(users.router)
 app.include_router(chat.router)
 app.include_router(game.router)
 app.include_router(service.router)
+app.include_router(chat_pdf.router)
+
+app.mount("/static", StaticFiles(directory="static", check_dir=True), name="static")
 
 
 
