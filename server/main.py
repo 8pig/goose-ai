@@ -1,7 +1,7 @@
 import os
 
 from fastapi import FastAPI
-from app.routers import users, chat
+from app.routers import users, chat, game
 from dotenv import load_dotenv
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
@@ -22,6 +22,7 @@ app.add_middleware(
 )
 app.include_router(users.router)
 app.include_router(chat.router)
+app.include_router(game.router)
 
 
 
@@ -34,6 +35,8 @@ async def  main():
     print("Hello from fastapi-ai")
 
 
+# 在 main.py 中
 if __name__ == "__main__":
-    port = int(os.getenv("PORT", 8080))  # 默认端口8000，可从环境变量覆盖
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    port = int(os.getenv("PORT", 8001))
+    uvicorn.run(app, host="localhost", port=port, reload=True)
+

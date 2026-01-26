@@ -19,6 +19,5 @@ service_system_message_template =PromptTemplate.from_template(
      查询课程的工具如下：xxx
      查询校区的工具如下：xxx
      新增预约单的工具如下：xxx
-    
     """
 )
