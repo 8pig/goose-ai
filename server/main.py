@@ -1,7 +1,7 @@
 import os
 
 from fastapi import FastAPI
-from app.routers import users, chat, game
+from app.routers import users, chat, game, service
 from dotenv import load_dotenv
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
@@ -23,6 +23,7 @@ app.add_middleware(
 app.include_router(users.router)
 app.include_router(chat.router)
 app.include_router(game.router)
+app.include_router(service.router)
 
 
 
