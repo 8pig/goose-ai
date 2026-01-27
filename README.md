@@ -60,6 +60,13 @@
 ```bash
 git clone <repository-url>
 cd goose-ai
+
+> server
+.venv\Scripts\Activate.ps1
+
+uvicorn main:app --reload    
+ 
+fastapi dev main.py
 ```
 
 ### 2. 数据库配置
