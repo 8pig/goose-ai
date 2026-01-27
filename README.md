@@ -10,13 +10,13 @@
 
 <img src="D:\code\goose-ai\img\Snipaste_2026-01-26_11-32-15.png" alt="Snipaste_2026-01-26_11-32-15"  />
 
-![Snipaste_2026-01-27_16-54-10](D:\code\goose-ai\img\Snipaste_2026-01-27_16-54-10.png)
+![Snipaste_2026-01-27_16-54-10](.\img\Snipaste_2026-01-27_16-54-10.png)
 
-![Snipaste_2026-01-27_16-54-36](D:\code\goose-ai\img\Snipaste_2026-01-27_16-54-36.png)
+![Snipaste_2026-01-27_16-54-36](.\img\Snipaste_2026-01-27_16-54-36.png)
 
-![Snipaste_2026-01-27_16-55-44](D:\code\goose-ai\img\Snipaste_2026-01-27_16-55-44.png)
+![Snipaste_2026-01-27_16-55-44](.\img\Snipaste_2026-01-27_16-55-44.png)
 
-![Snipaste_2026-01-27_16-56-11](D:\code\goose-ai\img\Snipaste_2026-01-27_16-56-11.png)
+![Snipaste_2026-01-27_16-56-11](.\img\Snipaste_2026-01-27_16-56-11.png)
 
 
 
