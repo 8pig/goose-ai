@@ -131,7 +131,7 @@ npm run dev
    - 在 `application.yaml` 中配置阿里云API密钥
    - 使用 `qwen-max-latest` 模型
 
-2. **Ollama本地模型**
+2. **Ollama本地模型**()
    - 需要本地安装并运行Ollama
    - 配置 `deepseek-r1:7b` 模型
 
@@ -148,9 +148,9 @@ npm run dev
 ### 3. AI工具调用
 
 系统内置了多种AI工具：
-- 课程查询工具
-- 校区查询工具  
-- 课程预约工具
+- 预约查询工具
+- 案件查询工具  
+- 服务点预约工具
 
 这些工具可以让AI根据用户需求执行特定操作。
 
@@ -162,10 +162,10 @@ npm run dev
 
 ### 添加新的AI工具
 
-创建一个新的工具类，继承Spring AI的工具规范：
+创建一个新的工具类，
 
 ```java
-@Component
+@mcp.tools
 
 ```
 
