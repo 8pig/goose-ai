@@ -1,4 +1,4 @@
-# 呆头鹅AI - Goose-Ai
+# 呆头鹅AI - Goose-Ai (开发中)
 
 基于Python 和Vue构建的智能AI应用平台，支持多模态对话、PDF文档智能问答、预约推荐等功能。
 
