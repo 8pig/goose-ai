@@ -9,12 +9,24 @@
 <img src=".\img\Snipaste_2026-01-27_16-53-55.png"  />
 
 <img src=".\img\Snipaste_2026-01-26_11-32-15.png" alt="Snipaste_2026-01-26_11-32-15"  />
+
+
+
 <img src=".\img\Snipaste_2026-01-27_16-54-10.png" alt="Snipaste_2026-01-26_11-32-15"  />
+
+
+
 <img src=".\img\Snipaste_2026-01-27_16-54-36.png" alt="Snipaste_2026-01-26_11-32-15"  />
+
+
+
 <img src=".\img\Snipaste_2026-01-27_16-55-44.png" alt="Snipaste_2026-01-26_11-32-15"  />
+
+
+
 <img src=".\img\Snipaste_2026-01-27_16-56-11.png" alt="Snipaste_2026-01-26_11-32-15"  />
 
-
+> chat-pdf 开发中
 
 ## 功能特性
 
