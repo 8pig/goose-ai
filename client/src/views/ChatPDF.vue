@@ -153,7 +153,7 @@ const currentMessages = ref([])
 const chatHistory = ref([])
 const currentPdfName = ref('')
 const isDragging = ref(false)
-const BASE_URL = 'http://localhost:8080'
+const BASE_URL = 'http://localhost:8000'
 
 // 配置 marked
 marked.setOptions({

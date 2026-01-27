@@ -592,6 +592,7 @@ dependencies = [
     { name = "pyautogui" },
     { name = "pydantic" },
     { name = "pypdf" },
+    { name = "pypdf2" },
     { name = "python-docx" },
     { name = "python-dotenv" },
     { name = "python-multipart" },
@@ -622,6 +623,7 @@ requires-dist = [
     { name = "pyautogui", specifier = ">=0.9.54" },
     { name = "pydantic", specifier = ">=2.11.4" },
     { name = "pypdf", specifier = ">=6.6.1" },
+    { name = "pypdf2", specifier = ">=3.0.1" },
     { name = "python-docx", specifier = ">=1.2.0" },
     { name = "python-dotenv", specifier = ">=1.2.1" },
     { name = "python-multipart", specifier = ">=0.0.21" },
@@ -2515,6 +2517,15 @@ source = { registry = "https://mirrors.aliyun.com/pypi/simple/" }
 sdist = { url = "https://mirrors.aliyun.com/pypi/packages/90/da/50a15233ca512dcac68fd6edeabbf1cad5260e7f032f5a24934a7d5662c5/pypdf-6.6.1.tar.gz", hash = "sha256:7ea09ab3748644dacef1a30c475d1edc031656f69c03332c291ebf5b9291a909" }
 wheels = [
     { url = "https://mirrors.aliyun.com/pypi/packages/b9/cc/d9fd9f87bec8ebbfde76aaa9e30703e37810118e913538ef6526e94ebe51/pypdf-6.6.1-py3-none-any.whl", hash = "sha256:453354ddb4398319197f4006fbd1b93c4fbc995f15b15c0af88cba99494ce65a" },
+]
+
+[[package]]
+name = "pypdf2"
+version = "3.0.1"
+source = { registry = "https://mirrors.aliyun.com/pypi/simple/" }
+sdist = { url = "https://mirrors.aliyun.com/pypi/packages/9f/bb/18dc3062d37db6c491392007dfd1a7f524bb95886eb956569ac38a23a784/PyPDF2-3.0.1.tar.gz", hash = "sha256:a74408f69ba6271f71b9352ef4ed03dc53a31aa404d29b5d31f53bfecfee1440" }
+wheels = [
+    { url = "https://mirrors.aliyun.com/pypi/packages/8e/5e/c86a5643653825d3c913719e788e41386bee415c2b87b4f955432f2de6b2/pypdf2-3.0.1-py3-none-any.whl", hash = "sha256:d16e4205cfee272fbdc0568b68d82be796540b1537508cef59388f839c191928" },
 ]
 
 [[package]]
