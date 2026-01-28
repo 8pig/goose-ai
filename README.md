@@ -68,9 +68,8 @@
 
 ## 环境要求
 
-- **JDK**: 17+
+- **Vector database**:  PostgreSQL/pgvector _dify(1.10.0))_
 - **Python**: 3.13+
-- **Maven**: 3.6+
 - **MySQL**: 5.7+ 或 8.0+
 - **Node.js**: 用于前端资源构建（如果需要）
 - **Ollama** (可选): 用于本地AI模型部署
@@ -94,6 +93,8 @@ fastapi dev main.py
 ### 2. 数据库配置
 
 拉取redis-stack向量数据库
+
+> 项目使用dify自带向量库, 可以无缝迁移
 
 ```dockerfile
 docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 redis/redis-stack:latest
