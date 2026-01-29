@@ -102,15 +102,37 @@ docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 redis/redis-stack:lat
 
 ### 3. 修改配置
 
-编辑 `.env` 文件，根据你的环境修改数据库连接信息：
+编辑 `.env` 文件，根据你的环境修改配置信息：
 
 ```yaml
+OPENAI_API_KEY= <your qw apikey>
 
+DIFY_LIBRARY_API_KEY=<your dify apikey>
+DIFY_LIBRARY_DATA_SET_ID=<lib id>
 ```
 
-### 4. 构建项目
+### 4. DIFY 知识库
 
 ```bash
+ 1. dify 知识库新建空知识库
+ 2. 获取知识库的ID
+ 	* curl --request GET \
+      --url 'https://api.dify.ai/v1/datasets?page=1&limit=20' \
+      --header 'Authorization: Bearer <API_KEY>'
+ 3. 插入文本
+     curl --request POST \
+      --url http://127.0.0.1/v1/datasets/{dataset_id}/document/create-by-text \
+      --header 'Authorization: Bearer xxxx' \
+      --header 'Content-Type: application/json' \
+      --data '
+     {
+      "name": "bbb",
+      "text": "bbb",
+      "indexing_technique": "high_quality",
+      "process_rule": {
+        "mode": "automatic"
+      }
+    }
 ```
 
 ### 5. 启动应用

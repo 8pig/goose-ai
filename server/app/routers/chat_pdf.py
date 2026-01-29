@@ -7,6 +7,8 @@ import os
 
 from fastapi.params import Form
 
+from app.utils.dify_lib import DifyKnowledgeBaseClient
+
 router = APIRouter(
     prefix="/ai/pdf",
     tags=["items"],
@@ -41,6 +43,11 @@ async def upload_pdf(
             for page_num in range(len(pdf_reader.pages)):
                 page = pdf_reader.pages[page_num]
                 content += page.extract_text() + "\n"
+
+            dify_client = DifyKnowledgeBaseClient(os.getenv("DIFY_API_KEY"))
+            respJson = dify_client.create_by_text_to_document(os.getenv("DIFY_LIBRARY_DATA_SET_ID"), filename, content)
+            print("json")
+            print(f"respJson: {respJson}")
 
         return {"filename": filename, "content": content, "pages": len(pdf_reader.pages)}
 
